@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="80dp">
+
+    <RelativeLayout
+
+        android:id="@+id/eelativeLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/background_item"
+        >
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/imageView2"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp"
+            android:text="1"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_toEndOf="@+id/imageView2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:text="إِنَّ اللَّهَ لَا يَسْتَحْيِي أَنْ يَضْرِبَ"
+                android:id="@+id/textView5"
+                android:gravity="left"
+                android:textColor="#FFFFFF"
+                android:layout_alignParentTop="true"
+                 />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="Surat Al-Baqarah, Aya 26"
+                android:gravity="left"
+                android:id="@+id/textView6"
+                android:layout_marginTop="0dp"
+                android:textColor="#cbcbcb" />
+
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:text="231"
+            android:textColor="#cbcbcb"
+            android:id="@+id/textView7"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fekracomputers.quran"
+    android:installLocation="auto">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+
+    <application
+        android:name=".Application.QuranApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+
+        <!--android:excludeFromRecents="true"-->
+
+        <activity
+            android:name=".UI.Activities.MainActivity"
+            android:label="@string/app_name"
+
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".Downloader.DownloadService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name=".Downloader.DownloadTafseerService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name=".Audio.service.AudioService"
+
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name=".Utilities.CloseApplication"
+
+            android:exported="true"
+            android:process=":ServiceProcess"/>
+
+        <activity
+            android:name=".UI.Activities.HomeActivity"
+            android:label="@string/title_activity_activity_home"
+
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+        <activity
+            android:name=".UI.Activities.QuranDataActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_activity_home"
+            android:screenOrientation="portrait"
+
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UI.Activities.QuranPageReadActivity"
+            android:label="@string/title_activity_activity_home"
+            android:configChanges="orientation"
+
+            android:theme="@style/AppTheme.NoActionBar"/>
+            <!--android:excludeFromRecents="true"-->
+
+        <activity
+            android:name=".UI.Activities.PageTafseerActivity"
+            android:label="@string/title_activity_activity_home"
+
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UI.Activities.SearchActivity"
+            android:label="@string/title_activity_activity_home"
+
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UI.Activities.TranslationsActivity"
+            android:label="@string/translation"
+
+          />
+        <activity
+            android:name=".UI.Activities.SettingsActivity"
+            android:configChanges="locale|layoutDirection"
+            android:label="@string/settings"
+
+            android:theme="@style/AppThemeWithoutPopup"
+            />
+        <activity
+            android:name=".UI.Activities.AboutActivity"
+            android:configChanges="locale|layoutDirection"
+            android:label="@string/about"
+
+            />
+            <!--android:excludeFromRecents="true"/>-->
+        <activity
+            android:name=".UI.Activities.TranslationReadActivity"
+            android:label="@string/title_activity_translation_read"
+
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <receiver
+            android:name=".Utilities.IncommingCallReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

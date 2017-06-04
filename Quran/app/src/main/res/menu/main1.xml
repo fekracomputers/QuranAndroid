@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/back"
+        android:icon="@drawable/ic_back"
+        android:showAsAction="always"
+        android:title="back"/>
+    
+</menu>

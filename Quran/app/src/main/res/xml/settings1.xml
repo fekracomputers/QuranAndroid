@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:icon="@null"
+    style="@style/PreferencesTheme"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--<PreferenceCategory android:title="@string/display">-->
+
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="language"
+        android:summary="@string/arabic_mood_summary"
+        android:layout="@layout/mylayoutsettings1"
+        android:title="@string/arabic_mood"
+
+        />
+    <CheckBoxPreference
+
+            android:icon="@null"
+            android:defaultValue="false"
+            android:key="orientation"
+            android:title="@string/lock_screen"
+            android:layout="@layout/mylayoutsettings1"
+            android:summary="@string/lock_screen_summary"/>
+
+    <!--</PreferenceCategory>-->
+
+    <!--<PreferenceCategory android:title="@string/navigation">-->
+
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="night"
+        android:title="@string/night_mode"
+        android:summary="@string/lock_screen_summary1"
+        android:layout="@layout/mylayoutsettings1"
+        />
+    <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="volume"
+            android:title="@string/volume_key"
+            android:summary="@string/volume_key_summary"
+        android:layout="@layout/mylayoutsettings1"
+        />
+
+
+    <!--</PreferenceCategory>-->
+
+    <!--<PreferenceCategory android:title="@string/translations_pref">-->
+
+        <!--<Preference
+            android:key="translations"
+            android:title="@string/translations"
+            android:summary="@string/translations_summary"/>-->
+
+        <!--<CheckBoxPreference
+            android:visibility="gone"
+            android:defaultValue="true"
+            android:key="aya"
+            android:title="@string/ayah_translation"
+            android:summary="@string/ayah_translation_summary"/>-->
+
+        <!--<ListPreference
+            android:defaultValue="180"
+            android:entries="@array/text_sizes"
+            android:entryValues="@array/text_sizes_values"
+            android:key="size"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/text_size"
+            android:summary="@string/Text_size_summary"/>-->
+
+    <!--</PreferenceCategory>-->
+
+    <!--<PreferenceCategory android:title="@string/audio">-->
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="stream"
+        android:title="@string/stream"
+        android:summary="@string/stream_summary"
+        android:layout="@layout/mylayoutsettings1"
+        />
+
+
+    <!--</PreferenceCategory>-->
+
+</PreferenceScreen>

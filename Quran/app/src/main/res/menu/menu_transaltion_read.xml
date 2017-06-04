@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_zoom_in"
+        android:title="@string/read"
+        android:icon="@drawable/ic_zoom_in"
+        app:showAsAction="always"/>
+
+
+    <item
+        android:id="@+id/action_read_quran"
+        android:title="@string/read"
+        android:icon="@drawable/ic_quran"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/bookmark"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_not_fav"
+        android:title="@string/Bookmarks" />
+</menu>

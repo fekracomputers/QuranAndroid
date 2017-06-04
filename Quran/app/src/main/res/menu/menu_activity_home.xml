@@ -1,0 +1,53 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.fekracomputers.quran.UI.Activities.HomeActivity">
+
+    <item
+        android:id="@+id/action_jump"
+        android:title="@string/menu1"
+        android:visible="true"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/menu6"
+        app:showAsAction="never"/>
+
+
+    <item
+        android:id="@+id/action_translations"
+        android:title="@string/menu2"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_rate_app"
+        android:title="@string/menu5"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_share"
+        android:title="@string/menu7"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_about"
+        android:title="@string/menu4"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/last"
+        android:icon="@drawable/ic_last_page"
+        android:title="@string/LastPage"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search_new"
+        android:title="@string/search"
+
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="collapseActionView|always"
+        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ" />
+
+</menu>

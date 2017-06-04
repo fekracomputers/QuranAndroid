@@ -1,0 +1,17 @@
+
+.div{
+    -webkit-tap-highlight-color: rgb(255, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+}
+body, textarea:focus, input:focus{
+
+
+
+}
+
+
+
+* {
+    -webkit-tap-highlight-color: rgb(255, 0, 0) !important;
+    -webkit-focus- ring-color: rgb(255, 0, 0) !important;
+}

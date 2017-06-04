@@ -1,0 +1,86 @@
+<resources>
+
+    <!-- Alert view style. -->
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:background">#303030</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/colorAccent</item>
+        <item name="actionOverflowMenuStyle">@style/PopupStyle</item>
+    </style>
+
+    <style name="AppThemeWithoutPopup" parent="AppTheme">
+        <item name="android:alertDialogTheme">@style/Theme.YourApp.Dialog.Alert</item>
+    </style>
+
+    <style name="PopupStyle" parent="Base.Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">#395e60</item>
+    </style>
+
+    <style name="Theme.YourApp.Dialog.Alert" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="textViewStyle" parent="TextAppearance.AppCompat">
+        <item name="android:gravity">left|center</item>
+
+    </style>
+    <style name="tafseerDownload" parent="TextAppearance.AppCompat">
+
+        <item name="android:textSize">50sp</item>
+    </style>
+    <style name="spinnerStyle"  parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:padding">5sp</item>
+    </style>
+    <style name="PreferencesTheme" parent="@android:style/Theme.Black">
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColorSecondary">#000000</item>
+        <item name="android:textColorPrimary">#000000</item>
+    </style>
+    <style name="backImage">
+        <item name="android:src">@drawable/ic_back</item>
+    </style>
+
+    <style name="AppTheme."></style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="spinner_style" parent="Base.Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textColor">#FFFFFF</item>
+
+        <item name="android:dividerHeight">5dp</item>
+        <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+        <item name="android:popupBackground">#395e60</item>
+    </style>
+
+    <style name="TabsCustomStyle" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>

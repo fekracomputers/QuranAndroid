@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fefef9"
+    tools:context="com.fekracomputers.quran.UI.Activities.QuranPageReadActivity$PlaceholderFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.fekracomputers.quran.UI.Custom.HighlightImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/QuranPortrail"
+            android:background="#fefef9" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:id="@+id/landscape"
+        android:visibility="gone"
+        android:layout_height="fill_parent"
+        >
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/parent">
+            <com.fekracomputers.quran.UI.Custom.HighlightImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/QuranLandScape"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:background="#fefef9"/>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

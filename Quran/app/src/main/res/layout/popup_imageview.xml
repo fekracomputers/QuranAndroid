@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#B33E686A">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/copy"
+        android:src="@drawable/ic_action_copy"
+        android:background="?android:attr/selectableItemBackground"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/share"
+        android:src="@drawable/ic_share"
+        android:background="?android:attr/selectableItemBackground"/>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/tafseer"
+        android:src="@drawable/ic_trans"
+        android:background="?android:attr/selectableItemBackground"/>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/playfrom"
+        android:visibility="visible"
+        android:src="@drawable/ic_play_from"
+        android:background="?android:attr/selectableItemBackground"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/play"
+        android:src="@drawable/ic_action_play"
+        android:background="?android:attr/selectableItemBackground"/>
+
+
+</LinearLayout>

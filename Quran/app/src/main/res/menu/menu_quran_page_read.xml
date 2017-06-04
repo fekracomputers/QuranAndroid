@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context="com.fekracomputers.quran.UI.Activities.QuranPageReadActivity">
+
+
+    <item
+        android:id="@+id/bookmark"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_not_fav"
+        android:title="@string/Bookmarks" />
+
+    <item
+        android:id="@+id/tafser"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_book"
+        android:title="@string/Explanation" />
+
+</menu>

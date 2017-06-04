@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="80dp">
+
+    <RelativeLayout
+        android:id="@+id/rl_sora_item"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/background_item">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView2"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="13dp"
+            android:src="@drawable/ic_favorit_new"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_toLeftOf="@+id/imageView2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:text="Surat Al-Baqarah"
+                android:gravity="right"
+                android:id="@+id/textView5"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="page 7, juza 11"
+                android:gravity="right"
+                android:id="@+id/textView6"
+                android:textColor="#cbcbcb" />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:text="231"
+            android:textColor="#cbcbcb"
+            android:id="@+id/textView7"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true" />
+
+
+    </RelativeLayout>
+</RelativeLayout>
