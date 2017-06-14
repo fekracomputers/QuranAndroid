@@ -24,5 +24,8 @@ Application features:
 ## Note:
 This is **NOT** a fork of [Quran Android](https://github.com/quran/quran_android) however it is influnced by its UI design
 
+
+Please share any suggetion or edit in the issue track
+
 ## contribution
 - originally develoed by [Mohamed Mo'men](https://github.com/mmoamenn) @ fekracomputers
