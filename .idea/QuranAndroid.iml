@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../../QuranAndroid/gen" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../../QuranAndroid/gen" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../../QuranAndroid/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/../../QuranAndroid/res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../../QuranAndroid/assets" />
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../../QuranAndroid/libs" />
+        <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../../QuranAndroid/proguard_logs" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
+    </content>
+    <orderEntry type="jdk" jdkName="Android API 8 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
