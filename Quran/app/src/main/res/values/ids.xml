@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="item_position" type="id">item_position</item>
+    <item name="item_holder_position" type="id" />
 </resources>

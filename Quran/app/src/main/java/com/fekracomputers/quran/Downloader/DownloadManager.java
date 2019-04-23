@@ -1,5 +1,7 @@
 package com.fekracomputers.quran.Downloader;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -39,6 +41,14 @@ import android.util.Log;
  * Async task class can run in background as a service or normal thread
  */
 public class DownloadManager extends AsyncTask<String, Long, Boolean> {
+
+
+    final String CHANNEL_ID = "DOWNLOAD_SERVICE_CHANNEL_ID";
+    final String CHANNEL_NAME = "DOWNLOAD_SERVICE_CHANNEL_NAME";
+    final String CHANNEL_DESCRIPTION = "DOWNLOAD_SERVICE_CHANNEL_DESCRIPTION";
+
+
+
     public static final int DOWNLOAD_CHUNK_SIZE = 1024 * 3;
     private int downloadType = -1;
     private ProgressBar downloadProgressBar;
@@ -164,6 +174,7 @@ public class DownloadManager extends AsyncTask<String, Long, Boolean> {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e(DownloadManager.class.getSimpleName(), "e : " + e.getLocalizedMessage());
         }
 
         return false;
@@ -483,14 +494,46 @@ public class DownloadManager extends AsyncTask<String, Long, Boolean> {
 
     }
 
+
+    /**
+     * Init notification channels for android 8.0 and higher
+     */
+    private String createNotificationChannel(Context context) {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            int importance = NotificationManager.IMPORTANCE_LOW;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance);
+            channel.setDescription(CHANNEL_DESCRIPTION);
+            channel.enableLights(true);
+            channel.setLightColor(Color.RED);
+            channel.setShowBadge(true);
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+        return CHANNEL_ID;
+    }
+
+
+
     /**
      * Initialize and show notification of download statue
      */
     public void showNotificationDownloader() {
 
+
         remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_download_progress);
-        builder = new NotificationCompat.Builder(context)
-                .setSmallIcon(aboveLollipopFlag ? R.drawable.ic_quran_trans : R.drawable.logo)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelID = createNotificationChannel(context);
+            builder = new NotificationCompat.Builder(context, channelID);
+        } else {
+            builder = new NotificationCompat.Builder(context);
+        }
+        builder.setSmallIcon(aboveLollipopFlag ? R.drawable.ic_quran_trans : R.drawable.logo)
                 .setColor(Color.parseColor("#3E686A"))
                 .setProgress(100, 0, false)
                 .setContentTitle(context.getString(R.string.app_name))
@@ -506,9 +549,13 @@ public class DownloadManager extends AsyncTask<String, Long, Boolean> {
      */
     public void showCompleteNotification() {
         remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_download_finished);
-        builder = new NotificationCompat
-                .Builder(context)
-                .setSmallIcon(aboveLollipopFlag ? R.drawable.ic_quran_trans : R.drawable.logo)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelID = createNotificationChannel(context);
+            builder = new NotificationCompat.Builder(context, channelID);
+        } else {
+            builder = new NotificationCompat.Builder(context);
+        }
+        builder.setSmallIcon(aboveLollipopFlag ? R.drawable.ic_quran_trans : R.drawable.logo)
                 .setContentTitle(context.getString(R.string.app_name))
                 .setContentText(context.getString(R.string.download_complete))
                 .setColor(Color.parseColor("#3E686A"));
@@ -522,9 +569,13 @@ public class DownloadManager extends AsyncTask<String, Long, Boolean> {
      */
     public void showFailedNotification() {
         remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_download_failed);
-        builder = new NotificationCompat
-                .Builder(context)
-                .setSmallIcon(aboveLollipopFlag ? R.drawable.ic_quran_trans : R.drawable.logo)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelID = createNotificationChannel(context);
+            builder = new NotificationCompat.Builder(context, channelID);
+        } else {
+            builder = new NotificationCompat.Builder(context);
+        }
+        builder.setSmallIcon(aboveLollipopFlag ? R.drawable.ic_quran_trans : R.drawable.logo)
                 .setContentTitle(context.getString(R.string.app_name))
                 .setContentText(context.getString(R.string.download_failed))
                 .setColor(Color.parseColor("#3E686A"));
@@ -536,9 +587,13 @@ public class DownloadManager extends AsyncTask<String, Long, Boolean> {
      */
     public void showcancelNotification() {
         remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_download_failed);
-        builder = new NotificationCompat
-                .Builder(context)
-                .setSmallIcon(aboveLollipopFlag ? R.drawable.ic_quran_trans : R.drawable.logo)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelID = createNotificationChannel(context);
+            builder = new NotificationCompat.Builder(context, channelID);
+        } else {
+            builder = new NotificationCompat.Builder(context);
+        }
+        builder.setSmallIcon(aboveLollipopFlag ? R.drawable.ic_quran_trans : R.drawable.logo)
                 .setContentTitle(context.getString(R.string.app_name))
                 .setContentText("canceled")
                 .setColor(Color.parseColor("#3E686A"));

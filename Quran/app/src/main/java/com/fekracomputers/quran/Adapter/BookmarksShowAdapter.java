@@ -63,7 +63,7 @@ public class BookmarksShowAdapter extends ArrayAdapter<Bookmark> implements View
 
             convertView = inflate.inflate(R.layout.row_bookmark, parent, false);
             viewHolder = new ViewHolder(convertView);
-            viewHolder.soraLayout.setTag(R.id.item_position,position);
+            viewHolder.soraLayout.setTag(R.id.item_holder_position, position);
             viewHolder.soraLayout.setOnClickListener(this);
             viewHolder.suraName.setText(Locale.getDefault().getDisplayLanguage().equals("العربية") ?
                     context.getResources().getString(R.string.sora) + " " + bookmark.pageInfo.soraName :
@@ -102,7 +102,7 @@ public class BookmarksShowAdapter extends ArrayAdapter<Bookmark> implements View
 
     @Override
     public void onClick(View view) {
-        int itemPosition = (int) view.getTag(R.id.item_position);
+        int itemPosition = (int) view.getTag(R.id.item_holder_position);
         Bookmark bookmark = getItem(itemPosition);
         Intent QuranPage = new Intent(getContext(), QuranPageReadActivity.class);
         QuranPage.putExtra(AppConstants.General.PAGE_NUMBER, (604 - bookmark.page));
