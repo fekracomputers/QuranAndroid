@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioAttributes;
+import android.media.AudioFocusRequest;
 import android.media.MediaPlayer;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -155,6 +157,7 @@ public class AudioManager extends AsyncTask<String, Long, Boolean> {
             }
 
         } catch (Exception e) {
+            Log.e(AudioManager.class.getSimpleName(), "doInBackground error : " + e.getLocalizedMessage());
             e.printStackTrace();
             if (bigNotification) {
                 largeMediaPlayer.dismiss();
@@ -231,7 +234,15 @@ public class AudioManager extends AsyncTask<String, Long, Boolean> {
 
                     //check if stream or from path
                     if (AppPreference.isStreamMood()) {
-                        mediaPlayer.setAudioStreamType(android.media.AudioManager.STREAM_MUSIC);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            mediaPlayer.setAudioAttributes(
+                                    new AudioAttributes.Builder()
+                                            .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                                            .setUsage(AudioAttributes.USAGE_MEDIA)
+                                            .build());
+                        } else {
+                            mediaPlayer.setAudioStreamType(android.media.AudioManager.STREAM_MUSIC);
+                        }
                         mediaPlayer.setDataSource(AudioHelper.createStreamLink(aya, streamURL));
 
                     } else {
@@ -264,6 +275,7 @@ public class AudioManager extends AsyncTask<String, Long, Boolean> {
                     });
 
         } catch (IOException e) {
+            Log.e(AudioManager.class.getSimpleName(), "versePlayAudio error : " + e.getLocalizedMessage());
             e.printStackTrace();
             //stop the media service and dismiss the notification
             stopFlag = true;
@@ -315,8 +327,8 @@ public class AudioManager extends AsyncTask<String, Long, Boolean> {
 
                 }
 
-                Log.i("AUDIO_TAG" , "size next: "+ayat.size());
-                Log.i("AUDIO_TAG" , "pos next: "+AudioPosition);
+                Log.e("AUDIO_TAG", "size next: " + ayat.size());
+                Log.e("AUDIO_TAG", "pos next: " + AudioPosition);
                 //send broadcast to highlight image view
                 final Aya aya = ayat.get(AudioPosition);
                 Intent highlightAya = new Intent(AppConstants.Highlight.INTENT_FILTER);
@@ -343,7 +355,15 @@ public class AudioManager extends AsyncTask<String, Long, Boolean> {
 
                 //check if stream or from path
                 if (AppPreference.isStreamMood()) {
-                    mediaPlayer.setAudioStreamType(android.media.AudioManager.STREAM_MUSIC);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        mediaPlayer.setAudioAttributes(
+                                new AudioAttributes.Builder()
+                                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                                        .setUsage(AudioAttributes.USAGE_MEDIA)
+                                        .build());
+                    } else {
+                        mediaPlayer.setAudioStreamType(android.media.AudioManager.STREAM_MUSIC);
+                    }
                     mediaPlayer.setDataSource(AudioHelper.createStreamLink(aya, streamURL));
 
                 } else {
@@ -392,6 +412,7 @@ pauseMedia();
 
         } catch (IOException e) {
             e.printStackTrace();
+            Log.e(AudioManager.class.getSimpleName(), "nextAudio error : " + e.getLocalizedMessage());
             //stop the media service and dismiss the notification
             stopFlag = true;
             stopMedia();
@@ -430,8 +451,8 @@ pauseMedia();
                 return;
             }
 
-            Log.i("AUDIO_TAG" , "size prev: "+ayat.size());
-            Log.i("AUDIO_TAG" , "pos prev: "+AudioPosition);
+            Log.e("AUDIO_TAG", "size prev: " + ayat.size());
+            Log.e("AUDIO_TAG", "pos prev: " + AudioPosition);
             //send broadcast to highlight image view
             Aya aya = ayat.get(AudioPosition);
             Intent highlightAya = new Intent(AppConstants.Highlight.INTENT_FILTER);
@@ -458,7 +479,15 @@ pauseMedia();
 
             //check if stream or from path
             if (AppPreference.isStreamMood()) {
-                mediaPlayer.setAudioStreamType(android.media.AudioManager.STREAM_MUSIC);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mediaPlayer.setAudioAttributes(
+                            new AudioAttributes.Builder()
+                                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                                    .build());
+                } else {
+                    mediaPlayer.setAudioStreamType(android.media.AudioManager.STREAM_MUSIC);
+                }
                 mediaPlayer.setDataSource(AudioHelper.createStreamLink(aya, streamURL));
             } else {
                 mediaPlayer.setDataSource(paths.get(AudioPosition));
@@ -490,6 +519,7 @@ pauseMedia();
             });
         } catch (IOException e) {
             e.printStackTrace();
+            Log.e(AudioManager.class.getSimpleName(), "previousAudio error : " + e.getLocalizedMessage());
             //stop the media service and dismiss the notification
             stopFlag = true;
             stopMedia();
@@ -637,27 +667,30 @@ pauseMedia();
      * Broadcast receiver to check outgoing call
      */
     private void initOutgoingBroadcastReceiver() {
-        OutgoingBroadcastReceiver = new BroadcastReceiver() {
+        if (OutgoingBroadcastReceiver == null) {
+            OutgoingBroadcastReceiver = new BroadcastReceiver() {
 
-            @Override
-            public void onReceive(Context context, Intent intent) {
+                @Override
+                public void onReceive(Context context, Intent intent) {
 
-                if (intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
+                    if (intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
 
-                    isInCall = true;
+                        isInCall = true;
 
-                    if (isInCall == true) {
-                        smallMediaPlayer = SmallMediaPlayer.getInstance(context);
-                        bigNotification = false;
-                        pauseMedia();
+                        if (isInCall) {
+                            smallMediaPlayer = SmallMediaPlayer.getInstance(context);
+                            bigNotification = false;
+                            pauseMedia();
+                        }
+
                     }
-
                 }
-            }
-        };
-        IntentFilter filter = new IntentFilter(Intent.ACTION_NEW_OUTGOING_CALL);
-        context.registerReceiver(OutgoingBroadcastReceiver, filter);
+            };
+            IntentFilter filter = new IntentFilter(Intent.ACTION_NEW_OUTGOING_CALL);
+            context.registerReceiver(OutgoingBroadcastReceiver, filter);
+        }
     }
+
 
 
     /**
@@ -677,4 +710,28 @@ pauseMedia();
 
     }
 
+
+    private void requestAudioFocus(android.media.AudioManager audioManager) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            AudioAttributes playbackAttributes = new AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .build();
+            AudioFocusRequest focusRequest =
+                    new AudioFocusRequest.Builder(android.media.AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
+                            .setAudioAttributes(playbackAttributes)
+                            .setAcceptsDelayedFocusGain(true)
+                            .setOnAudioFocusChangeListener(
+                                    new android.media.AudioManager.OnAudioFocusChangeListener() {
+                                        @Override
+                                        public void onAudioFocusChange(int i) {
+                                        }
+                                    })
+                            .build();
+            audioManager.requestAudioFocus(focusRequest);
+        } else {
+            audioManager.requestAudioFocus(null, android.media.AudioManager.STREAM_VOICE_CALL,
+                    android.media.AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+        }
+    }
 }

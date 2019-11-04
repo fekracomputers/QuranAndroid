@@ -21,6 +21,7 @@ import com.fekracomputers.quran.Utilities.Settingsss;
 
 import java.util.List;
 import java.util.Locale;
+
 import com.fekracomputers.quran.UI.Activities.QuranPageReadActivity;
 import com.fekracomputers.quran.Utilities.AppConstants;
 
@@ -29,26 +30,29 @@ import com.fekracomputers.quran.Utilities.AppConstants;
  * Adapter class for quarters show
  */
 public class QuartersShowAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-// objects.
-private Context context;
+    //Variables.
+    int x = 0;
     private Typeface customFont;
+    // objects.
+    private Context context;
     //List
-private List<Quarter> items ;
- //Variables.
-int x=0;
-    private  boolean isTabletDevice;
+    private List<Quarter> items;
+    private boolean isTabletDevice;
+
     public QuartersShowAdapter(Context context, List<Quarter> items) {
         isTabletDevice = isTablet(context);
         this.context = context;
-        this.items = items ;
+        this.items = items;
         customFont = Typeface.createFromAsset(context.getAssets(), "simple.otf");
         DatabaseAccess databaseAccess = new DatabaseAccess();
-        for (Quarter quarter: items) {
-            if(quarter.ayaFirstNumber==0){
-                quarter.firstVerseText = databaseAccess.getSoraFirstAya(quarter.soraid);
+        if (items != null && items.size() > 0)
+            for (Quarter quarter : items) {
+                if (quarter.ayaFirstNumber == 0) {
+                    quarter.firstVerseText = databaseAccess.getSoraFirstAya(quarter.soraid);
+                }
             }
-        }
     }
+
     @Override
     public int getItemViewType(int position) {
         Quarter quarter = items.get(position);
@@ -58,30 +62,26 @@ int x=0;
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        if(viewType != -1){
+        if (viewType != -1) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_quarter , parent , false); // inflater.inflate(R.layout.row_quarter, null, true);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_quarter, parent, false); // inflater.inflate(R.layout.row_quarter, null, true);
 
             return new ViewHolder(view);
 
         } else {
 
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_sura_separator , parent , false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_sura_separator, parent, false);
 
-            return new  ViewHolderSplitter(view);
+            return new ViewHolderSplitter(view);
         }
-
-
-
 
 
     }
 
 
-
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder,  int position) {
-          position = holder.getAdapterPosition();
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+        position = holder.getAdapterPosition();
         final Quarter quarter = items.get(position);
         if (getItemViewType(position) != -1) {
             // sora item.
@@ -99,24 +99,24 @@ int x=0;
             ayaViewHolder.aya.setText(Settingsss.ChangeNumbers(context, startVerse));
 
             ayaViewHolder.info.setText(Settingsss.ChangeNumbers(context, context.getResources().getString(R.string.sora) + " " + soraNameText + ", " + context
-                    .getResources().getString(R.string.aya) + " " + (quarter.ayaFirstNumber == 0 ? 1 : quarter.ayaFirstNumber) ));
+                    .getResources().getString(R.string.aya) + " " + (quarter.ayaFirstNumber == 0 ? 1 : quarter.ayaFirstNumber)));
             ayaViewHolder.partNumber.setText(Settingsss.ChangeNumbers(context, quarter.counter != 0 ? String.valueOf(quarter.counter) : ""));
             imageNumber(quarter.partNumber, ayaViewHolder.partNumber);
 
 
-            if(isTabletDevice){
+            if (isTabletDevice) {
                 ((ViewHolder) holder).aya.setTextSize(31);
                 ((ViewHolder) holder).page.setTextSize(25);
                 ((ViewHolder) holder).info.setTextSize(25);
             }
-        }else{
+        } else {
             // TODO : debug this numbers in arabic lenovooo
             ((ViewHolderSplitter) holder).jozaNumber.setText(Settingsss.ChangeNumbers(context, context.getString(R.string.juza) + " " + quarter.joza));
-            ((ViewHolderSplitter) holder).pageNumber.setText(Settingsss.ChangeNumbers(context , quarter.startPageNumber+""));
-            if(isTablet(context)){
+            ((ViewHolderSplitter) holder).pageNumber.setText(Settingsss.ChangeNumbers(context, quarter.startPageNumber + ""));
+            if (isTablet(context)) {
                 ((ViewHolderSplitter) holder).jozaNumber.setTextSize(30);
                 ((ViewHolderSplitter) holder).pageNumber.setTextSize(20);
-        }
+            }
         }
 
         //open quran pages
@@ -126,12 +126,10 @@ int x=0;
             public void onClick(View v) {
 
 
+                if (getItemViewType(finalPosition) != -1) {
 
 
-                if(getItemViewType(finalPosition) != -1){
-
-
-                }else{
+                } else {
 
                 }
 
@@ -145,7 +143,7 @@ int x=0;
     @Override
     public int getItemCount() {
 
-            return items.size();
+        return items.size();
 
     }
 
@@ -153,16 +151,17 @@ int x=0;
     /**
      * View holder to set views to list view
      */
-    private class ViewHolder extends RecyclerView.ViewHolder{
+    private class ViewHolder extends RecyclerView.ViewHolder {
 
-         TextView page, aya, info, partNumber;
-         RelativeLayout eelativeLayout;
-         ViewHolder(View layout) {
+        TextView page, aya, info, partNumber;
+        RelativeLayout eelativeLayout;
+
+        ViewHolder(View layout) {
             super(layout);
             page = (TextView) layout.findViewById(R.id.textView7);
             aya = (TextView) layout.findViewById(R.id.textView5);
             info = (TextView) layout.findViewById(R.id.textView6);
-            eelativeLayout=(RelativeLayout)layout.findViewById(R.id.eelativeLayout);
+            eelativeLayout = (RelativeLayout) layout.findViewById(R.id.eelativeLayout);
             partNumber = (TextView) layout.findViewById(R.id.imageView2);
             info.setTypeface(customFont);
             aya.setTypeface(customFont);
@@ -174,9 +173,9 @@ int x=0;
      * Adapter view holder for part
      */
     private class ViewHolderSplitter extends RecyclerView.ViewHolder {
-         TextView jozaNumber, pageNumber;
+        TextView jozaNumber, pageNumber;
 
-         ViewHolderSplitter(android.view.View layout) {
+        ViewHolderSplitter(android.view.View layout) {
             super(layout);
             jozaNumber = (TextView) layout.findViewById(R.id.textView8);
 
@@ -208,6 +207,7 @@ int x=0;
                 break;
         }
     }
+
     private static boolean isTablet(Context context) {
         return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }

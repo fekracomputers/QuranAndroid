@@ -3,6 +3,7 @@ package com.fekracomputers.quran.Audio.helper;
 import android.content.Context;
 import android.util.Log;
 
+import com.fekracomputers.quran.Audio.service.AudioManager;
 import com.fekracomputers.quran.Models.Aya;
 import com.fekracomputers.quran.Utilities.AppConstants;
 import com.fekracomputers.quran.Utilities.QuranValidateSources;
@@ -38,7 +39,10 @@ public class AudioHelper {
         else if (ayaNumber == 2)
             ayaID = "0" + aya.ayaID;
 
-        return streamURL + suraID + ayaID + AppConstants.Extensions.MP3;
+        String link = streamURL + suraID + ayaID + AppConstants.Extensions.MP3;
+
+        Log.e(AudioHelper.class.getSimpleName(), "streamURL : " + link);
+        return link;
     }
 
 

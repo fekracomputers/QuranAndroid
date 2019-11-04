@@ -140,6 +140,7 @@ public class QuranDataActivity extends Activity {
         public void run() {
 
             String DownloadLink = QuranConfig.getResolutionURLLink(QuranDataActivity.this);
+            Log.e(QuranDataActivity.class.getSimpleName(), "downloadLink : +" + DownloadLink);
 
             //check file download length
             if (Integer.getInteger(FileManager.getDownloadFileLength(DownloadLink)) ==

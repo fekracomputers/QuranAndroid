@@ -14,11 +14,14 @@ import android.widget.RemoteViews;
 import com.fekracomputers.quran.R;
 import com.fekracomputers.quran.UI.Activities.QuranPageReadActivity;
 import com.fekracomputers.quran.Utilities.AppConstants;
+import com.fekracomputers.quran.notification.NotificationChannelManager;
 
 /**
  * Class to show small notification Media Player
  */
 public class SmallMediaPlayer {
+    private static final String SMALL_MEDIA_CHANNEL_ID = "SMALL_MEDIA_CHANNEL_ID";
+    private static final String SMALL_MEDIA_CHANNEL_NAME = "SMALL_MEDIA_CHANNEL_NAME";
     private static SmallMediaPlayer smallMediaPlayer;
     private static NotificationManager notificationManager;
     private static NotificationCompat.Builder builder;
@@ -67,13 +70,13 @@ public class SmallMediaPlayer {
         //retrieve open application
         notificationSmallView.setOnClickPendingIntent(R.id.im_logo, configPendingIntent);
 
-        builder = new NotificationCompat.Builder(context)
-                .setSmallIcon(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                        ? R.drawable.ic_quran_trans : R.drawable.logo)
-                .setPriority(Notification.PRIORITY_MAX)
-                .setContent(notificationSmallView).setOngoing(true);
+        builder = NotificationChannelManager.createSmallMediaNotificcation(context,
+                SMALL_MEDIA_CHANNEL_ID,
+                SMALL_MEDIA_CHANNEL_NAME,
+                notificationSmallView);
 
         notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+
         notificationManager.notify(0, builder.build());
 
         resume();
